@@ -1,0 +1,61 @@
+############################# Run-Time Summary Log #############################
+
+Program Compiled Date and Time:  04/15/2021 19:36:51 
+
+Step 1 of 6: Importing data...
+
+- Read in Input data file. The dataset contains  1048  records
+- Read in Meddra Dictionary data version 22 The dataset contains  80262  records
+
+Step 2 of 6: Exact matching...
+
+-There are  8 , 0.76 % records can be exactly matched
+-There are  1040 , 99.24 % records can't be directly matched
+
+Step 3 of 6: Data Processing...
+
+-Preprocess successfully using grammer: stem
+
+Step 4 of 6: Implementing Similarity Matching...
+
+-There are  191 , 18.37 % records recommended by greedy search
+-There are  849 , 81.63 % records pass to machine learning model
+
+Step 5 of 6: Implementing Machine Learning Prediction...
+Model: "model_3"
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_3 (InputLayer)            [(None, 9, 400)]     0                                            
+__________________________________________________________________________________________________
+lstm_3 (LSTM)                   (None, 9, 256)       672768      input_3[0][0]                    
+__________________________________________________________________________________________________
+permute_3 (Permute)             (None, 256, 9)       0           lstm_3[0][0]                     
+__________________________________________________________________________________________________
+reshape_3 (Reshape)             (None, 256, 9)       0           permute_3[0][0]                  
+__________________________________________________________________________________________________
+dense_5 (Dense)                 (None, 256, 9)       90          reshape_3[0][0]                  
+__________________________________________________________________________________________________
+attention_vec (Permute)         (None, 9, 256)       0           dense_5[0][0]                    
+__________________________________________________________________________________________________
+attention_mul (Concatenate)     (None, 9, 512)       0           lstm_3[0][0]                     
+                                                                 attention_vec[0][0]              
+__________________________________________________________________________________________________
+flatten_3 (Flatten)             (None, 4608)         0           attention_mul[0][0]              
+__________________________________________________________________________________________________
+dense_6 (Dense)                 (None, 79719)        367424871   flatten_3[0][0]                  
+==================================================================================================
+Total params: 368,097,729
+Trainable params: 368,097,729
+Non-trainable params: 0
+__________________________________________________________________________________________________
+None
+-There are  849 records predicted by machine learning
+
+Step 6 of 6: Generating output...
+
+Program Finished Date and Time:  04/15/2021 20:25:48 
+
+Script Time Used:  0:48:56.627641
+
+############################## Program Finished #################################
